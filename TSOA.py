@@ -40,7 +40,7 @@ def insertEmp():
     Hire_Date = request.form['Hire_Date']
     emp_image_file = request.files['emp_image_file']
 
-    insert_sql = "INSERT INTO employees1 VALUES (%s, %s, %s, %s, %s)"                     #CHANGE NAME
+    insert_sql = "INSERT INTO employees VALUES (%s, %s, %s, %s, %s)"                     #CHANGE NAME
     cursor = db_conn.cursor()
 
     if emp_image_file.filename == "":
