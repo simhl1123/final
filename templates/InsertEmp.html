@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Employee Information</title>
+</head>
+<style>
+.nav-area {
+    float: right;
+    list-style: none;
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.nav-area li {
+    display: inline-block;
+}
+
+.nav-area li a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-size: 14px;
+}
+
+.nav-area li a:hover {
+    background: #333;
+    color: #fff;
+}
+
+#logo img {
+    width: 150px;
+    float: left;
+    padding-left: 5%;
+    padding-top: 2%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image:  url("/static/images/background1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    width: 98%;
+    height: 100%;
+}
+    
+input {
+    margin-left: 100px;
+}
+
+.llll {
+    font-size: xx-large;
+    color: green;
+    font-family: 'Sansita Swashed', cursive;
+}
+
+h1 {
+    font-size: xx-large;
+    color: green;
+    font-family: 'Sansita Swashed', cursive;
+    margin-left: 10px;
+}
+
+fieldset {
+    padding: 10px;
+}
+
+.upperpart {
+    display: flex;
+}
+input:hover{
+    background-color: turquoise;
+}
+
+button[type=submit],button[type=reset] {
+    font-size: x-large;
+    background-color: orange;
+    border: 1px solid orange;
+    border-radius: 50px;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
+    float: right;
+}
+
+button:hover{
+    background-color: darkblue;
+}
+
+#display_image {
+    width: 400px;
+    height: 225px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+}
+</style>
+<header>
+    <div id="logo">
+        <img src="{{url_for('static', filename='images/citylogo2.png')}}">
+    </div>
+
+    <ul class="nav-area">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="https://www.youtube.com/watch?v=a9__D53WsUs">About</a></li>
+        <!-- <li><a href="#">Services</a></li> -->
+        <!-- <li><a href="#">Portfolio</a></li> -->
+
+    </ul>
+    <!-- <button href="/about" style="background: grey;margin-left: 1150px; height: 45px; width: 200px; color: white; size: 5; font:oblique;">About Us</a> -->
+</header>
+<center>
+    <font color="black" size="4" style="font-family: avenir">
+
+        <h1>Employee Database</h1>
+</center>
+<right>
+
+    <body>
+
+        <form action="/insertEmp" autocomplete="on" method="POST" enctype="multipart/form-data">
+            <div class="upperpart">
+                <fieldset id="remark">
+                    <legend class="llll">Employee Information</legend>
+                    <br><br>
+                    <label for="EmpInFomethod">
+                    <!-- <button type="submit" formaction="/getemp" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GET EMPLOYEE INFORMATION</button><br><br> -->
+
+                    Employee ID:<input style="height:25px;margin-left: 10px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40"><br><br> Name:
+
+                  <input style="height:25px;margin-left: 60px;font-size:14pt;color:grey;" type="text" name="first_name"><br><br> Payscale:
+
+                  <input style="height:25px;margin-left: 40px;font-size:14pt;color:grey;" type="number" name="Payscale"><br><br> Department:
+
+                  <input style ="height:25px;margin-left: 20px;font-size:14pt;color:grey;" type="text" name="Department"><br><br> Hire Date:
+
+                 <input style="height:25px;;margin-left: 35px;font-size:14pt;color:grey;" type="date" name="Hire_Date"><br><br> 
+                 </label>
+                </fieldset>
+
+                <fieldset id="Img">
+                    <legend class="llll">Image</legend>
+                    Image:<input type=file name="emp_image_file" id=image_input style="height:25px;font-size:14pt;color:grey;"> <br><br>
+                    <!-- <textarea name="remark" id="remark" rows="10" cols="40" ></textarea> -->
+                    <div id="display_image"></div>
+                </fieldset>
+            </div>
+
+            <center>
+                
+                <button type="submit">UPDATE DATABASE</button>
+                <button type="reset">RESET</button>
+            </center>
+
+        </form>
+
+        <script>
+            const image_input = document.querySelector("#image_input");
+            var uploaded_image;
+
+            image_input.addEventListener('change', function() {
+                const reader = new FileReader();
+                reader.addEventListener('load', () => {
+                    uploaded_image = reader.result;
+                    document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
+                });
+                reader.readAsDataURL(this.files[0]);
+            });
+        </script>
+
+    </body>
+
+    </font>
+</right>
+<!-- </center> -->
+
+</html>

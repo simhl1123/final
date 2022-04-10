@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Attendence</title>
+</head>
+<style>
+.nav-area {
+    float: right;
+    list-style: none;
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.nav-area li {
+    display: inline-block;
+}
+
+.nav-area li a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-size: 14px;
+}
+
+.nav-area li a:hover {
+    background: #333;
+    color: #fff;
+}
+
+#logo img {
+    width: 150px;
+    float: left;
+    padding-left: 5%;
+    padding-top: 2%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image:  url("/static/images/background2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    width: 98%;
+    height: 100%;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+h1{
+    margin-top: 8%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+a:hover{
+	background: rgb(174, 220, 244);
+	color: red;
+}
+
+button{
+    background: grey; 
+    height: 60px; 
+    width: 150px; 
+    color: white;  
+    font-size: 20px; 
+    font-family: fantasy;
+    border-radius: 25px;
+    border-color: #333;
+    margin-left: 75%;
+}
+
+button:hover{
+    background: rgb(174, 220, 244);
+    color: red;
+}
+
+div{
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 25px;
+	color: brown;
+}
+
+table,th,td{
+    border-style: double;
+    border-color: black;
+    text-align: center;
+}
+
+th{
+    background-color: rgba(128, 128, 128, 0.276);
+    font-family:Arial, Helvetica, sans-serif
+}
+
+td{
+    background-color: rgb(255, 255, 255);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+th:hover,td:hover{
+    background-color: turquoise;
+}
+
+p{
+    font-size: 30px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+</style>
+<header>
+    <div id="logo">
+        <img src="{{url_for('static', filename='images/citylogo2.png')}}">
+    </div>
+
+    <ul class="nav-area">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="https://www.youtube.com/watch?v=a9__D53WsUs">About</a></li>
+        <!-- <li><a href="#">Services</a></li> -->
+        <!-- <li><a href="#">Portfolio</a></li> -->
+
+    </ul>
+    <!-- <button href="/about" style="background: grey;margin-left: 1150px; height: 45px; width: 200px; color: white; size: 5; font:oblique;">About Us</a> -->
+</header>
+<body>
+    <font color="black" size="5" style="font-family: avenir">
+    <form action="/mark" autocomplete="on" method="POST" enctype="multipart/form-data">
+        <h1 style="color: rgb(154, 71, 255)"><u>MarkAttendence</u></h1>
+        <table>
+            <p>Date/Time: <span id="datetime"></span></p>
+            <tr>
+                <th>Employee ID.</th>
+                <th>Employee Name.</th>
+                <th>Department</th>
+                <th colspan="2">Attend.</th>
+
+            </tr>
+            {% for item in emplist %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[3] }}</td>
+                <td><input type="checkbox" name="attend" id="YES" value="YES"><label for="YES">YES</label></td>
+                <td><input type="checkbox" name="attend" id="NO" value="NO" ><label for="NO">No</label></td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+        <br>
+        <button class="button" type="submit" onclick="myFunction()">UPDATE DATABASE</button>
+    </form>
+</font>
+</body>
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+
+function myFunction() {
+  alert("Attendance Updated!!!");
+}
+
+</script>
+</html>
